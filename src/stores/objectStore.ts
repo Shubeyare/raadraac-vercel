@@ -85,6 +85,7 @@ export const useObjectStore = defineStore("object", () => {
     console.log("Starting image recognition with threshold:", confidence);
     if (!currentImage.value) {
       console.error("No image available for recognition");
+      error.value = "No image available for recognition";
       return;
     }
 
@@ -95,24 +96,42 @@ export const useObjectStore = defineStore("object", () => {
     try {
       // Create an image element from the data URL
       const img = new Image();
-      img.src = currentImage.value;
-
-      // Wait for the image to load
-      await new Promise((resolve) => {
-        img.onload = resolve;
+      img.crossOrigin = "anonymous"; // Allow cross-origin images
+      
+      // Set up image loading handlers
+      await new Promise((resolve, reject) => {
+        img.onload = () => {
+          console.log("Image loaded successfully, size:", img.width, "x", img.height);
+          resolve(true);
+        };
+        img.onerror = (e) => {
+          console.error("Error loading image:", e);
+          reject(new Error("Failed to load image"));
+        };
+        img.src = currentImage.value!;
       });
 
-      console.log("Image loaded, size:", img.width, "x", img.height);
+      // Extra check that image dimensions are valid
+      if (img.width === 0 || img.height === 0) {
+        throw new Error(`Invalid image dimensions: ${img.width}x${img.height}`);
+      }
 
       // Use TensorFlow.js model to make predictions
+      console.log("Sending image to TensorFlow service");
       const predictions = await tensorflowService.predict(img);
 
       // Store debug info
       debugInfo.value = `Predictions: ${JSON.stringify(predictions, null, 2)}`;
       console.log("Prediction results:", predictions);
 
+      // Log all predictions for debugging
+      for (const pred of predictions) {
+        console.log(`Class: ${pred.className}, Confidence: ${(pred.probability * 100).toFixed(1)}%`);
+      }
+
       // Check if the top prediction is "dhiil" with high confidence
       if (
+        predictions.length > 0 && 
         predictions[0].className === "dhiil" &&
         predictions[0].probability > confidence
       ) {
@@ -130,13 +149,16 @@ export const useObjectStore = defineStore("object", () => {
         );
       } else {
         // Object not recognized with high enough confidence
+        const topPrediction = predictions.length > 0 ? predictions[0] : { className: "unknown", probability: 0 };
+        
         console.log(
           "Not recognized as dhiil. Top prediction:",
-          predictions[0].className,
+          topPrediction.className,
           "with confidence:",
-          predictions[0].probability
+          topPrediction.probability
         );
-        error.value = `Object not recognized as dhiil (${predictions[0].className}: ${(predictions[0].probability * 100).toFixed(1)}%). Please try another image.`;
+        
+        error.value = `Object not recognized as dhiil (${topPrediction.className}: ${(topPrediction.probability * 100).toFixed(1)}%). Please try another image.`;
         recognizedObject.value = null;
       }
     } catch (e) {

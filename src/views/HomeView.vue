@@ -60,6 +60,25 @@ const analyzeImage = async () => {
     // First set a slight delay to ensure the UI updates
     await new Promise((resolve) => setTimeout(resolve, 100));
 
+    // Ensure image is fully loaded before proceeding
+    if (imageWidth.value === 0 || imageHeight.value === 0) {
+      console.log(
+        "Image dimensions not available yet, waiting for image to load..."
+      );
+      await new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          imageWidth.value = img.naturalWidth;
+          imageHeight.value = img.naturalHeight;
+          console.log(
+            `Image loaded with dimensions: ${imageWidth.value}x${imageHeight.value}`
+          );
+          resolve(true);
+        };
+        img.src = imageSrc.value || "";
+      });
+    }
+
     // Set the current image in the store
     objectStore.setCurrentImage(imageSrc.value);
     console.log(
@@ -69,8 +88,8 @@ const analyzeImage = async () => {
       imageHeight.value
     );
 
-    // Perform the recognition with a lower threshold
-    await objectStore.recognizeObject(0.3); // Lower threshold for easier recognition
+    // Perform the recognition with a lower threshold for easier recognition
+    await objectStore.recognizeObject(0.3);
 
     // Navigate to result page
     router.push("/result");
@@ -78,6 +97,9 @@ const analyzeImage = async () => {
     console.error("Error analyzing image:", err);
     if (err instanceof Error) {
       console.error("Error details:", err.message);
+      alert(`Error analyzing image: ${err.message}`);
+    } else {
+      alert("An unknown error occurred while analyzing the image");
     }
   } finally {
     isAnalyzing.value = false;
