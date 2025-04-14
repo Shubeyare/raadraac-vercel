@@ -13,17 +13,17 @@
     "upload": "Soo geli sawir",
     "camera": "qaad sawir",
     "or": "ama",
-    "drop": "Halkan ku soo dhig sawikaaga",
-    "analyzing": "Waa la falanqeynayaa sawirkaaga...",
+    "drop": "Halkan soo dhig sawika",
+    "analyzing": "xaqiijin sawirkaaga...",
     "error": "Wax khalad ah ayaa dhacay. Fadlan isku day mar kale."
   },
   "about": {
     "title": "Ku saabsan Raadraac",
     "description": "Raadraac waa app loogu talagalay in lagu ilaaliyo lana wadaago dhaqanka Soomaaliyeed iyada oo loo marayo tiknoolajiyada. Marka la aqoonsado waxyaabaha dhaqanka, waxaan rajeyneynaa inaan dadka ku xirno taariikhda qaniga ah iyo farsamada gacanta ee Soomaaliya.",
     "how": "Sida ay u shaqeyso",
-    "step1": "Soo geli ama sawir ka qaad shay dhaqameed Soomaaliyeed",
+    "step1": "Soo geli ama sawir ka qaad shay dhaqameedka",
     "step2": "AI-ga wuxuu aqoonsanayaa shayga",
-    "step3": "Baro taariikhda shayga, isticmaalka, iyo muhiimadda dhaqan",
+    "step3": "Kadibna baro taariikhda shayga, isticmaalka, iyo muhiimadda dhaqan ee uu leeyahay",
     "offline": "Waxay ku shaqeysaa offline! Soo dejiso app-ka si aad ugu isticmaasho meel kasta."
   },
   "result": {
@@ -31,8 +31,6 @@
     "material": "Walxaha",
     "use": "Isticmaalka Dhaqanka",
     "insight": "Ogaalka Dhaqanka",
-    "region": "Gobol",
-    "proverb": "Maahmaah la xidhiidha",
     "try_again": "Isku day mid kale"
   }
 }

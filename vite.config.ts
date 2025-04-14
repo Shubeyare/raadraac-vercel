@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/raadraac/", // Use root path for local development
+  base: "/", // Use root path for local development
   plugins: [
     vue(),
     // VitePWA({ registerType: 'autoUpdate' })

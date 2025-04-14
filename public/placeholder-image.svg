@@ -1,0 +1,11 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="240" fill="#E6D2B5" fill-opacity="0.4"/>
+  <rect x="60" y="60" width="120" height="120" rx="8" stroke="#B89B74" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M70 170L90 150M110 170L140 140" stroke="#B89B74" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="130" cy="100" r="10" fill="#B89B74"/>
+  <path d="M120 70H80M160 70H140" stroke="#B89B74" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M100 210C100 204.477 104.477 200 110 200H130C135.523 200 140 204.477 140 210V210C140 215.523 135.523 220 130 220H110C104.477 220 100 215.523 100 210V210Z" fill="#B89B74" fill-opacity="0.3"/>
+  <path d="M100 30C100 24.4772 104.477 20 110 20H130C135.523 20 140 24.4772 140 30V30C140 35.5228 135.523 40 130 40H110C104.477 40 100 35.5228 100 30V30Z" fill="#B89B74" fill-opacity="0.3"/>
+  <path d="M210 100C215.523 100 220 104.477 220 110V130C220 135.523 215.523 140 210 140V140C204.477 140 200 135.523 200 130V110C200 104.477 204.477 100 210 100V100Z" fill="#B89B74" fill-opacity="0.3"/>
+  <path d="M30 100C35.5228 100 40 104.477 40 110V130C40 135.523 35.5228 140 30 140V140C24.4772 140 20 135.523 20 130V110C20 104.477 24.4772 100 30 100V100Z" fill="#B89B74" fill-opacity="0.3"/>
+</svg> 
