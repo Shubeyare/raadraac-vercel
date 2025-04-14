@@ -1,0 +1,5 @@
+This directory will contain screenshots of the app for the web manifest.
+In a production app, you would replace these with actual screenshots:
+
+- home-screen.png (1080x1920)
+- result-screen.png (1080x1920) 

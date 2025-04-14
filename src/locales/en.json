@@ -1,0 +1,38 @@
+{
+  "app": {
+    "name": "Raadraac",
+    "subtitle": "Somali Cultural Object Recognition"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Discover Somali Cultural Heritage",
+    "upload": "Upload an image",
+    "camera": "Take a photo",
+    "or": "or",
+    "drop": "Drop your image here",
+    "analyzing": "Analyzing your image...",
+    "error": "Something went wrong. Please try again."
+  },
+  "about": {
+    "title": "About Raadraac",
+    "description": "Raadraac is an app designed to help preserve and share Somali cultural heritage through technology. By recognizing traditional objects, we hope to connect people with the rich history and craftsmanship of Somalia.",
+    "how": "How it works",
+    "step1": "Upload or take a photo of a traditional Somali object",
+    "step2": "Our AI recognizes the object",
+    "step3": "Learn about the object's history, use, and cultural significance",
+    "offline": "Works offline! Download the app to use it anywhere."
+  },
+  "result": {
+    "object": "Object",
+    "material": "Material",
+    "use": "Traditional Use",
+    "insight": "Cultural Insight",
+    "region": "Region",
+    "proverb": "Related Proverb",
+    "try_again": "Try Another"
+  }
+}

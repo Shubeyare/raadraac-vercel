@@ -1,0 +1,45 @@
+{
+  "name": "Raadraac - Somali Cultural Object Recognition",
+  "short_name": "Raadraac",
+  "description": "Identify and learn about traditional Somali cultural objects",
+  "theme_color": "#D4B996",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/home-screen.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Home Screen"
+    },
+    {
+      "src": "screenshots/result-screen.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Recognition Result"
+    }
+  ]
+}
