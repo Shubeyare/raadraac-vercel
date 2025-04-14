@@ -81,7 +81,7 @@ export const useObjectStore = defineStore("object", () => {
     debugInfo.value = null;
   }
 
-  async function recognizeObject(confidence = 0.5) {
+  async function recognizeObject(confidence = 0.3) {
     console.log("Starting image recognition with threshold:", confidence);
     if (!currentImage.value) {
       console.error("No image available for recognition");

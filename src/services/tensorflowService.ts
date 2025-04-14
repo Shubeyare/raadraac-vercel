@@ -10,15 +10,18 @@ class TensorFlowService {
    */
   async loadModel(): Promise<tmImage.CustomMobileNet> {
     if (this.model) {
+      console.log("Model already loaded, returning cached model");
       return this.model;
     }
 
     if (this.isModelLoading) {
+      console.log("Model loading already in progress, waiting...");
       // Wait for the model to load if already in progress
       return new Promise((resolve) => {
         const checkIfModelLoaded = setInterval(() => {
           if (this.model) {
             clearInterval(checkIfModelLoaded);
+            console.log("Model finished loading while waiting");
             resolve(this.model);
           }
         }, 100);
@@ -26,6 +29,7 @@ class TensorFlowService {
     }
 
     this.isModelLoading = true;
+    console.log("Starting model loading process");
 
     try {
       // Load the Teachable Machine model
@@ -34,12 +38,29 @@ class TensorFlowService {
 
       console.log(
         "Attempting to load Teachable Machine model from:",
-        modelURL,
-        metadataURL
+        window.location.origin + modelURL,
+        window.location.origin + metadataURL
       );
 
       try {
+        // Fetch and log the metadata first to check if it's accessible
+        try {
+          const metadataResponse = await fetch(metadataURL);
+          if (!metadataResponse.ok) {
+            console.error(
+              `Metadata fetch failed: ${metadataResponse.status} ${metadataResponse.statusText}`
+            );
+          } else {
+            const metadata = await metadataResponse.json();
+            console.log("Successfully fetched metadata:", metadata);
+            console.log("Model expects classes:", metadata.labels);
+          }
+        } catch (metadataError) {
+          console.error("Error fetching metadata:", metadataError);
+        }
+
         // Try to load the model from our public directory
+        console.log("Now loading the full model...");
         this.model = await tmImage.load(modelURL, metadataURL);
         console.log("Teachable Machine model loaded successfully!");
         console.log(
@@ -50,6 +71,11 @@ class TensorFlowService {
         );
       } catch (loadError) {
         console.error("Could not load Teachable Machine model:", loadError);
+
+        if (loadError instanceof Error) {
+          console.error("Error details:", loadError.message);
+          console.error("Error stack:", loadError.stack);
+        }
 
         // Create a dummy model implementation for testing
         // This emulates the Teachable Machine API when the model isn't available
@@ -133,14 +159,34 @@ class TensorFlowService {
     try {
       const model = await this.loadModel();
       console.log("Making prediction with model...");
+      console.log(
+        "Image source dimensions:",
+        imageSource.width,
+        "x",
+        imageSource.height
+      );
 
       const predictions = await model.predict(imageSource);
-      console.log("Prediction results:", predictions);
+      console.log("Raw prediction results:", JSON.stringify(predictions));
 
-      // Format results
-      return predictions.sort((a, b) => b.probability - a.probability);
+      // Format and sort results
+      const sortedPredictions = predictions.sort(
+        (a, b) => b.probability - a.probability
+      );
+      console.log(
+        "Sorted predictions:",
+        sortedPredictions
+          .map((p) => `${p.className}: ${(p.probability * 100).toFixed(2)}%`)
+          .join(", ")
+      );
+
+      return sortedPredictions;
     } catch (error) {
       console.error("Prediction error:", error);
+      if (error instanceof Error) {
+        console.error("Error details:", error.message);
+        console.error("Error stack:", error.stack);
+      }
       throw error;
     }
   }

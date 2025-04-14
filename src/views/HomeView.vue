@@ -60,13 +60,25 @@ const analyzeImage = async () => {
     // First set a slight delay to ensure the UI updates
     await new Promise((resolve) => setTimeout(resolve, 100));
 
-    // Perform the recognition
-    await objectStore.recognizeObject(0.65); // Lower threshold for demo purposes
+    // Set the current image in the store
+    objectStore.setCurrentImage(imageSrc.value);
+    console.log(
+      "Image set in store, dimensions:",
+      imageWidth.value,
+      "x",
+      imageHeight.value
+    );
+
+    // Perform the recognition with a lower threshold
+    await objectStore.recognizeObject(0.3); // Lower threshold for easier recognition
 
     // Navigate to result page
     router.push("/result");
   } catch (err) {
     console.error("Error analyzing image:", err);
+    if (err instanceof Error) {
+      console.error("Error details:", err.message);
+    }
   } finally {
     isAnalyzing.value = false;
   }
@@ -105,7 +117,7 @@ onUnmounted(() => {
     <div class="container-responsive py-8">
       <div class="max-w-3xl mx-auto">
         <!-- Image Interaction Area -->
-        <div class="card overflow-hidden mb-8">
+        <div class="card overflow-hidden mb-8 shadow-md">
           <!-- Image Preview -->
           <div
             v-if="hasImage"
@@ -286,7 +298,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Additional Information -->
-        <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
           <h2 class="text-xl font-semibold mb-4 flex items-center">
             <i class="fas fa-info-circle text-accent mr-2"></i>
             About Object Recognition
@@ -299,7 +311,7 @@ onUnmounted(() => {
             >
           </p>
 
-          <div class="flex items-start space-x-4 mb-2">
+          <div class="flex items-start space-x-4 mb-6">
             <div
               class="w-10 h-10 rounded-full bg-primary-light/50 flex items-center justify-center text-primary-dark mt-1"
             >

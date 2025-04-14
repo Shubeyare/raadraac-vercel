@@ -245,4 +245,5 @@ h3 {
 .container-responsive {
   @apply px-4 sm:px-6 lg:px-8 mx-auto;
   max-width: var(--max-width-content);
+  width: 100%;
 }

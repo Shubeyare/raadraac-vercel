@@ -203,7 +203,7 @@ const closeMobileMenu = () => {
     <footer class="bg-gray-50 border-t border-gray-100 py-6 mt-auto">
       <div class="container-responsive">
         <div
-          class="flex flex-col md:flex-row justify-between items-center gap-4"
+          class="flex flex-col md:flex-row justify-between items-center gap-4 py-2"
         >
           <div class="flex items-center gap-2">
             <img src="/favicon.svg" alt="Logo" class="w-6 h-6" />
@@ -212,9 +212,7 @@ const closeMobileMenu = () => {
             }}</span>
           </div>
 
-          <p class="text-sm text-gray-500">
-            {{ t("app.subtitle") }}
-          </p>
+          <p class="text-sm text-gray-500">Made with ❤️ by Abdishakur Shube</p>
         </div>
       </div>
     </footer>

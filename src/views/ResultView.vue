@@ -75,7 +75,7 @@ const tryAgain = () => {
         <!-- Title card (overlapping) -->
         <div class="container-responsive relative -mt-24">
           <div
-            class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100"
+            class="bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100"
           >
             <div
               class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
@@ -116,7 +116,7 @@ const tryAgain = () => {
         <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div class="space-y-6">
             <!-- Material -->
-            <div class="card p-6">
+            <div class="card p-6 shadow-md">
               <h2
                 class="text-lg font-semibold flex items-center mb-3 text-primary-dark"
               >
@@ -129,7 +129,7 @@ const tryAgain = () => {
             </div>
 
             <!-- Traditional Use -->
-            <div class="card p-6">
+            <div class="card p-6 shadow-md">
               <h2
                 class="text-lg font-semibold flex items-center mb-3 text-primary-dark"
               >
@@ -144,7 +144,7 @@ const tryAgain = () => {
 
           <div class="space-y-6">
             <!-- Cultural Insight -->
-            <div class="card p-6">
+            <div class="card p-6 shadow-md">
               <h2
                 class="text-lg font-semibold flex items-center mb-3 text-primary-dark"
               >
@@ -178,7 +178,7 @@ const tryAgain = () => {
     >
       <div class="container-responsive py-8">
         <div
-          class="max-w-lg mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+          class="max-w-lg mx-auto bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden"
         >
           <!-- Image preview -->
           <div
@@ -217,11 +217,49 @@ const tryAgain = () => {
 
         <!-- Debug Info -->
         <div
-          v-if="objectStore.debugInfo"
+          v-if="false && objectStore.debugInfo"
           class="mt-8 max-w-lg mx-auto p-4 bg-gray-50 rounded-lg text-xs text-gray-500 font-mono overflow-x-auto"
         >
           <h3 class="text-sm font-semibold mb-2">Debug Info:</h3>
           <pre>{{ objectStore.debugInfo }}</pre>
+
+          <div class="mt-4 border-t pt-2">
+            <h4 class="text-sm font-semibold mb-1">
+              Test with different thresholds:
+            </h4>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <button
+                @click="objectStore.recognizeObject(0.1)"
+                class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs hover:bg-blue-200"
+              >
+                Very Low (10%)
+              </button>
+              <button
+                @click="objectStore.recognizeObject(0.3)"
+                class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs hover:bg-blue-200"
+              >
+                Low (30%)
+              </button>
+              <button
+                @click="objectStore.recognizeObject(0.5)"
+                class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs hover:bg-blue-200"
+              >
+                Medium (50%)
+              </button>
+              <button
+                @click="objectStore.recognizeObject(0.7)"
+                class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs hover:bg-blue-200"
+              >
+                High (70%)
+              </button>
+              <button
+                @click="objectStore.recognizeObject(0.9)"
+                class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs hover:bg-blue-200"
+              >
+                Very High (90%)
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

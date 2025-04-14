@@ -18,8 +18,11 @@ const routes = [
   },
 ];
 
+// Get the base URL from the environment or use a default path that matches deployment
+const base = import.meta.env.BASE_URL || '/raadraac-vercel/';
+
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(base),
   routes,
 });
 

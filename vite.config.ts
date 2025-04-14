@@ -2,16 +2,9 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "node:url";
 
-// Comment out PWA plugin for now to fix build errors
-// import { VitePWA } from 'vite-plugin-pwa'
-
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: "/", // Use root path for local development
-  plugins: [
-    vue(),
-    // VitePWA({ registerType: 'autoUpdate' })
-  ],
+  base: "/raadraac-vercel/", // 👈 This is IMPORTANT for GitHub Pages
+  plugins: [vue()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
